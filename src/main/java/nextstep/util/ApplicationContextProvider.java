@@ -1,4 +1,4 @@
-package nextstep.app;
+package nextstep.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

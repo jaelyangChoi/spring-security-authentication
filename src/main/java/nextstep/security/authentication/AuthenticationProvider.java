@@ -1,6 +1,6 @@
 package nextstep.security.authentication;
 
-import nextstep.app.ApplicationContextProvider;
+import nextstep.util.ApplicationContextProvider;
 import nextstep.security.core.Authentication;
 import nextstep.security.core.AuthenticationException;
 import nextstep.security.core.userdetails.UserDetails;
