@@ -42,7 +42,7 @@ class MemberTest {
         String encoded = Base64Utils.encodeToString(token.getBytes());
 
         ResultActions loginResponse = mockMvc.perform(get("/members")
-                .header("Authorization", "Basic " + encoded)
+                .header("Authorization", "Basic " + encoded) //Basic YUBhLmNvbTpwYXNzd29yZA==
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
         );
 
