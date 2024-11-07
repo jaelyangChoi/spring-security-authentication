@@ -1,10 +1,8 @@
 # spring-security-authentication
 
 
-아이디와 비밀번호를 기반으로 로그인 기능을 구현하고 <br> 
-Basic 인증을 사용하여 사용자를 식별할 수 있도록 스프링 프레임워크를 사용하여 웹 앱으로 구현한다.
-
-- ``Spring security``의 내부 구조를 분석해 직접 구현 (단, ``Filter`` 대신 ``Interceptor`` 활용)
+아이디와 비밀번호를 기반으로 로그인 기능을 구현하고, Basic 인증을 사용하여 사용자를 식별할 수 있도록 구현한다.
+- ``Spring security``의 내부 구조를 분석해 직접 구현
 
 ---
 # 구현 요구 사항
@@ -32,9 +30,8 @@ Basic 인증을 사용하여 사용자를 식별할 수 있도록 스프링 프�
         + 아이디/패스워드 기반 Authentication ``Interceptor``
         + Basic 인증 기반 Authentication  ``Interceptor``
         + Authorization ``Interceptor``
-      
-
-
+  
+    
 4. 인증 로직과 서비스 로직 간의 패키지 분리
     + **서비스 코드와 인증 코드를 명확히 분리**하여 관리하도록 한다.
       + 서비스 관련 코드는 ``app`` 패키지에 위치시키고, 인증 관련 코드는 ``security`` 패키지에 위치시킨다.
@@ -47,7 +44,8 @@ Basic 인증을 사용하여 사용자를 식별할 수 있도록 스프링 프�
    security 패키지를 독립적이고 재사용 가능하게 설계하려면, 직접적인 의존성을 피하기 위해 인터페이스를 구현하게 한다. (DIP)
    ```
    
-   
+5. Spring Security 구조로 전환 (필터로 전환)
+   + ``spring security`` 를 분석하여 compact 한 버전으로 구현한다.
     
 
 <br>
