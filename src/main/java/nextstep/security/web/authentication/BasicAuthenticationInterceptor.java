@@ -1,3 +1,4 @@
+/*
 package nextstep.security.web.authentication;
 
 import nextstep.security.authentication.BadCredentialsException;
@@ -74,4 +75,4 @@ public class BasicAuthenticationInterceptor extends AuthenticationInterceptor {
 }
 //1. Basic 인증을 사용하여 사용자를 식별한다. 요청의 Authorization 헤더에서 Basic 인증 정보를 추출
 //2. 인증 성공 시 Session 을 사용하여 인증 정보를 저장한다.
-//3. 인가 필터로 -> Member 로 등록되어있는 사용자만 가능하도록 한다
+//3. 인가 필터로 -> Member 로 등록되어있는 사용자만 가능하도록 한다*/

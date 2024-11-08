@@ -1,6 +1,6 @@
 package nextstep.security.authentication;
 
-import nextstep.util.ApplicationContextProvider;
+import lombok.RequiredArgsConstructor;
 import nextstep.security.core.Authentication;
 import nextstep.security.core.AuthenticationException;
 import nextstep.security.core.userdetails.UserDetails;
@@ -8,13 +8,10 @@ import nextstep.security.core.userdetails.UserDetailsService;
 
 import java.util.Objects;
 
+@RequiredArgsConstructor
 public class AuthenticationProvider {
 
     private final UserDetailsService userDetailsService;
-
-    public AuthenticationProvider() {
-        this.userDetailsService = ApplicationContextProvider.getApplicationContext().getBean(UserDetailsService.class);
-    }
 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         // 사용자 정보 load
@@ -34,7 +31,7 @@ public class AuthenticationProvider {
 
     private void authenticationChecks(Authentication authentication, UserDetails loadedUser) {
         if (!Objects.equals(authentication.getCredentials().toString(), loadedUser.getPassword())) {
-            throw new BadCredentialsException("Bad credentials");
+            throw new BadCredentialsException("아이디, 패스워드를 확인해주세요");
         }
     }
 

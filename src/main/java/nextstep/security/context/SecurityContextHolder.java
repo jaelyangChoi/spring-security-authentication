@@ -27,7 +27,7 @@ public class SecurityContextHolder {
         contextHolder.remove();
     }
 
-    private static SecurityContext createEmptyContext() {
+    public static SecurityContext createEmptyContext() {
         return new SecurityContext();
     }
 }

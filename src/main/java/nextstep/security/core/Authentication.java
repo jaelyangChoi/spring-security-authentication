@@ -24,10 +24,18 @@ public class Authentication {
         this.authorities = authorities;
     }
 
-    public String getName(){
-        if (principal instanceof UserDetails){
-            return ((UserDetails)principal).getUsername();
+    public String getName() {
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
         }
         return principal.toString();
+    }
+
+    public static Authentication unauthenticated(Object principal, Object credentials) {
+        return new Authentication(principal, credentials, null);
+    }
+
+    public static Authentication authenticated(Object principal, Object credentials, Collection<GrantedAuthority> authorities) {
+        return new Authentication(principal, credentials, authorities);
     }
 }
