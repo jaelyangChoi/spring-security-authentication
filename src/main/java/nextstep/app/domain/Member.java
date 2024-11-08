@@ -1,5 +1,9 @@
 package nextstep.app.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
 public class Member {
     private final String email;
     private final String password;
@@ -11,21 +15,5 @@ public class Member {
         this.password = password;
         this.name = name;
         this.imageUrl = imageUrl;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
     }
 }
