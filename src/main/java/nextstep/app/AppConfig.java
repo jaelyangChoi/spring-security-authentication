@@ -32,14 +32,14 @@ public class AppConfig {
 
     @Bean
     public FilterChainProxy filterChainProxy() {
-        return new FilterChainProxy(securityFilterChain());
+        return new FilterChainProxy(List.of(securityFilterChain()));
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain() {
         return new DefaultSecurityFilterChain(
                 new RequestMatcher(RequestMatcher.MATCH_ALL, null)
-                , Arrays.asList(new UsernamePasswordAuthenticationFilter(authenticationManager())));
+                , List.of(new UsernamePasswordAuthenticationFilter(authenticationManager())));
     }
 
     @Bean

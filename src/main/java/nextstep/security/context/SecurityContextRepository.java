@@ -6,17 +6,15 @@ import javax.servlet.http.HttpSession;
 
 public class SecurityContextRepository {
     public static final String SPRING_SECURITY_CONTEXT_KEY = "SPRING_SECURITY_CONTEXT";
-    private String springSecurityContextKey = SPRING_SECURITY_CONTEXT_KEY;
 
     public void saveContext(SecurityContext context, HttpServletRequest request, HttpServletResponse response) {
-        request.getSession().setAttribute(springSecurityContextKey, context);
+        request.getSession().setAttribute(SPRING_SECURITY_CONTEXT_KEY, context);
     }
 
-    public boolean containsContext(HttpServletRequest request) {
+    public SecurityContext containsContext(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        if (session == null) {
-            return false;
-        }
-        return session.getAttribute(this.springSecurityContextKey) != null;
+        if (session == null)
+            return null;
+        return (SecurityContext) session.getAttribute(SPRING_SECURITY_CONTEXT_KEY);
     }
 }

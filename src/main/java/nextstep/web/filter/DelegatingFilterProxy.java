@@ -1,5 +1,6 @@
 package nextstep.web.filter;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.*;
@@ -10,13 +11,10 @@ import java.io.IOException;
  * FilterChainProxy 에게 시큐리티 관련 처리를 위임
  */
 
+@AllArgsConstructor
 public class DelegatingFilterProxy extends GenericFilterBean {
 
     private volatile Filter delegate;
-
-    public DelegatingFilterProxy(Filter delegate) {
-        this.delegate = delegate;
-    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
