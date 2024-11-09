@@ -23,7 +23,7 @@ import java.io.IOException;
 @Setter
 @RequiredArgsConstructor
 public class UsernamePasswordAuthenticationFilter extends GenericFilterBean {
-    private final RequestMatcher requiresAuthenticationRequestMatcher = new RequestMatcher("/login", HttpMethod.POST);
+    private final RequestMatcher requiresAuthenticationRequestMatcher = new RequestMatcher("/login", HttpMethod.GET);
     private String forwardUrl = "/";
     private final AuthenticationManager authenticationManager;
     private final SecurityContextRepository securityContextRepository = new SecurityContextRepository();
@@ -47,22 +47,16 @@ public class UsernamePasswordAuthenticationFilter extends GenericFilterBean {
         try {
             //인증 시도
             Authentication authenticationResult = attemptAuthentication(request);
-
             if (authenticationResult == null) {
                 throw new AuthenticationException("Authentication failed");
             }
-
-            // TODO 세션 전략에 따라 SecurityContext에 저장
-//            this.sessionStrategy.onAuthentication(authenticationResult, request, response);
-            // Authentication success
 
             //로그인 성공 핸들러
             successfulAuthentication(request, response, chain, authenticationResult);
         }
         // Authentication failed
         catch (AuthenticationException e) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
-            return;
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }
 
