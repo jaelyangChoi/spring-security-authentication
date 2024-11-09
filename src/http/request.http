@@ -1,0 +1,30 @@
+### index
+GET localhost:8080/
+
+### login
+GET localhost:8080/login
+
+### members
+GET localhost:8080/members
+Authorization : Basic ddd
+
+### GET 요청 테스트 - Hello API
+GET http://localhost:8080/api/hello
+Accept: application/json
+
+### GET 요청 - 쿼리 파라미터
+GET http://localhost:8080/login/items?name=sample
+
+### 커스텀 헤더 추가
+GET http://localhost:8080/members
+Authorization: Basic invalid
+
+
+### POST 요청 예시
+POST http://localhost:8080/login
+Content-Type: application/x-www-form-urlencoded //application/json
+
+{
+  "username": "a@a.com",
+  "password": "password"
+}

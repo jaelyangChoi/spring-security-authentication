@@ -12,12 +12,12 @@ import nextstep.security.core.userdetails.UsernameNotFoundException;
 import nextstep.security.web.DefaultSecurityFilterChain;
 import nextstep.security.web.FilterChainProxy;
 import nextstep.security.web.SecurityFilterChain;
+import nextstep.security.web.authentication.BasicAuthenticationFilter;
 import nextstep.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import nextstep.security.web.util.matcher.RequestMatcher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,7 +39,8 @@ public class AppConfig {
     public SecurityFilterChain securityFilterChain() {
         return new DefaultSecurityFilterChain(
                 new RequestMatcher(RequestMatcher.MATCH_ALL, null)
-                , List.of(new UsernamePasswordAuthenticationFilter(authenticationManager())));
+                , List.of(new UsernamePasswordAuthenticationFilter(authenticationManager())
+                , new BasicAuthenticationFilter(authenticationManager())));
     }
 
     @Bean

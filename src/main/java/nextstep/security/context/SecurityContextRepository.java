@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 public class SecurityContextRepository {
     public static final String SPRING_SECURITY_CONTEXT_KEY = "SPRING_SECURITY_CONTEXT";
 
-    public void saveContext(SecurityContext context, HttpServletRequest request, HttpServletResponse response) {
+    public void saveContext(SecurityContext context, HttpServletRequest request) {
         request.getSession().setAttribute(SPRING_SECURITY_CONTEXT_KEY, context);
     }
 

@@ -47,22 +47,16 @@ public class UsernamePasswordAuthenticationFilter extends GenericFilterBean {
         try {
             //인증 시도
             Authentication authenticationResult = attemptAuthentication(request);
-
             if (authenticationResult == null) {
                 throw new AuthenticationException("Authentication failed");
             }
 
-            // TODO 세션 전략에 따라 SecurityContext에 저장
-//            this.sessionStrategy.onAuthentication(authenticationResult, request, response);
-            // Authentication success
-
             //로그인 성공 핸들러
-            successfulAuthentication(request, response, chain, authenticationResult);
+            successfulAuthentication(request, response, authenticationResult);
         }
         // Authentication failed
         catch (AuthenticationException e) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
-            return;
+            unsuccessfulAuthentication(response);
         }
     }
 
@@ -72,16 +66,17 @@ public class UsernamePasswordAuthenticationFilter extends GenericFilterBean {
         return authenticationManager.authenticate(authRequest);
     }
 
-    private void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authenticationResult) throws ServletException, IOException {
+    private void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, Authentication authenticationResult) throws ServletException, IOException {
         SecurityContext context = new SecurityContext(authenticationResult);
         SecurityContextHolder.setContext(context);
-        securityContextRepository.saveContext(context, request, response);
+        securityContextRepository.saveContext(context, request);
         //this.successHandler.onAuthenticationSuccess(request, response, authResult);
         //성공 시 인덱스 화면으로 포워딩
         request.getRequestDispatcher(this.forwardUrl).forward(request, response);
     }
 
-    private void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException ex) {
+    private void unsuccessfulAuthentication(HttpServletResponse response) {
         SecurityContextHolder.clearContext();
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
     }
 }
